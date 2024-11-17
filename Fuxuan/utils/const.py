@@ -122,19 +122,21 @@ RELATION_TO_LUCK = {
 }
 
 # 初始化关系字典
-WUXING_RELATION: dict[tuple[str, str], tuple[str, str, str]] = {}
+WUXING_RELATION = {}
 
 # 动态生成关系字典
 def generate_wuxing_relation():
     for hex_ti, wuxing_ti in HEXGRAM_TO_WUXING.items():
         for hex_yong, wuxing_yong in HEXGRAM_TO_WUXING.items():
-            if wuxing_ti == wuxing_yong:
+            if hex_ti == hex_yong:  # 比合
                 WUXING_RELATION[(hex_ti, hex_yong)] = ("体", "比合", "用")
-            elif WUXING[wuxing_ti]['生'] == wuxing_yong:
+            elif wuxing_ti == wuxing_yong:  # 五行相同，但不同八卦，不做处理
+                continue
+            elif WUXING[wuxing_ti]['生'] == wuxing_yong:  # 体生用
                 WUXING_RELATION[(hex_ti, hex_yong)] = ("体", "生", "用")
-            elif WUXING[wuxing_yong]['生'] == wuxing_ti:
+            elif WUXING[wuxing_yong]['生'] == wuxing_ti:  # 用生体
                 WUXING_RELATION[(hex_ti, hex_yong)] = ("用", "生", "体")
-            elif WUXING[wuxing_ti]['克'] == wuxing_yong:
+            elif WUXING[wuxing_ti]['克'] == wuxing_yong:  # 体克用
                 WUXING_RELATION[(hex_ti, hex_yong)] = ("体", "克", "用")
-            elif WUXING[wuxing_yong]['克'] == wuxing_ti:
+            elif WUXING[wuxing_yong]['克'] == wuxing_ti:  # 用克体
                 WUXING_RELATION[(hex_ti, hex_yong)] = ("用", "克", "体")

@@ -6,8 +6,8 @@ ILTGEAR = """ 不义不占\n 心不诚不占 \n 目的不明不占 \n 心不静�
 # Program information
 PROGRAM_NAME = "《梅花易经占卜》"
 USING_SOURCE = "https://www.bilibili.com/video/BV1Fx4y1a78m/"
-AUTHOR = "符玄(KOKOMI12345)"
-GITHUB = "https://github.com/KOKOMI12345/FuxuanDivination"
+AUTHOR = "符玄(Fuxuan-CN)"
+GITHUB = "https://github.com/Fuxuan-CN/FuxuanDivination"
 VERSION = "0.2.1"
 PYTHON_V = f"Python {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
 UPDATE = "2024-10-17 19:30:00"

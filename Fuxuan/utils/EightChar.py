@@ -47,6 +47,7 @@ class EightChar:
         return self.hour
 
     def __str__(self) -> str:
+        """ 返回生辰八字的字符串表示 """
         return f"{self.year}-{self.month}-{self.day}-{self.hour}"
     
 class CalculateEightChar:

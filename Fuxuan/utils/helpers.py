@@ -66,6 +66,7 @@ class Deprecated:
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             if not func.__name__ == "new_init": 
                 self._warn("function", func.__name__)
+                func.__deprecated__ = True
             return func(*args, **kwargs)
 
         wrapper.__signature__ = func_signature
@@ -82,6 +83,7 @@ class Deprecated:
             original_init(instance, *args, **kwargs)
 
         cls.__init__ = new_init
+        cls.__deprecated__ = True
 
         for attr_name, attr_value in cls.__dict__.items():
             if callable(attr_value):
