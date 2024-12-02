@@ -67,6 +67,33 @@ HEXGRAM_NUM: dict[str, int] = {
     "艮": 7,
     "坤": 8 # 被整除的卦数
 }
+
+# 先天八卦方位
+INHERENT_HEXGRAM = {
+    "乾": "正南",
+    "兑": "东南",
+    "离": "正东",
+    "震": "东北",
+    "巽": "西南",
+    "坎": "正西",
+    "艮": "西北",
+    "坤": "正北"
+}
+
+# 后天八卦方位
+ACQUIRED_HEXGRAM = {
+    "坎": "正北",
+    "坤": "西南",
+    "震": "正东",
+    "巽": "东南",
+    "中宫": "中央",
+    "乾": "西北",
+    "兑": "正西",
+    "艮": "东北",
+    "离": "正南"
+}
+
+
 NUM_TO_HEXGRAM_STR = { v:k for k,v in HEXGRAM_NUM.items() }
 # 卦象的表示方法(八卦表示法)
 HEXGRAM_DESCRIPTION: dict[int, tuple[str, str, str]] = {

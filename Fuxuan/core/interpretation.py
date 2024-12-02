@@ -95,7 +95,10 @@ class Interpretation:
         获取卦象的类型
         """
         try:
-            return HEXAGRAMS_64_TO_NAME[hexagram]
+            _upper = hexagram[:3]
+            _lower = hexagram[3:]
+            _hexagram = (_upper, _lower)
+            return HEXAGRAMS_64_TO_NAME[_hexagram]
         except KeyError:
             return "卦象还未被收录"
 
