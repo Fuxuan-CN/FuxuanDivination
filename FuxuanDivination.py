@@ -1,11 +1,14 @@
 
-from Fuxuan import CalculateEightChar
-from datetime import datetime
+from Fuxuan import TimeDivination
+from Fuxuan import Interpretation
 
 # build exe file command:
 # pyinstaller -F --version-file resources/version.txt FuxuanDivination.py -i resources/icon.ico
 
 if __name__ == '__main__':
-    birthday = datetime(2007, 10, 18, 11, 30, 0)
-    eight_char = CalculateEightChar.get_eight_char(birthday)
-    print(eight_char)
+    # 时间占卜
+    divinator = TimeDivination()
+    ittr = Interpretation()
+    question = input("请输入问题：")
+    result , div_result_string = divinator.run(question=question)
+    ittr.interpret(div_result=result, output_to_console=True)
