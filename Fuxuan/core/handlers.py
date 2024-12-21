@@ -11,6 +11,7 @@ class LuckHandler(InterpretHandler):
     def __init__(self, api_key: str = "your_api_key") -> None:
         self._type = DivType.LUCK # 占卜类型
         self.ai_interpreter_session = Session("glm-4-plus", api_key=api_key,stream=True)
+        self.ai_interpreter_session.load_another_system_prompt(["注意，卦象的解释尽可能的详细，长一些的文字都好，并且要确保正确，还有不能输出特殊字符，不要重复"])
 
     def get_div_type(self) -> DivType:
         return self._type
@@ -100,7 +101,7 @@ class LuckHandler(InterpretHandler):
         获取卦象的类型
         """
         try:
-            return {HEXAGRAMS_64_TO_NAME[original]}
+            return HEXAGRAMS_64_TO_NAME[hexagram]
         except KeyError:
             return "卦象还未被收录"
         
@@ -142,6 +143,7 @@ class ItemFoundHandler(InterpretHandler):
     def __init__(self, api_key: str = "your_api_key") -> None:
         self._type = DivType.ITEM # 占卜类型
         self.ai_interpreter_session = Session("glm-4-plus", api_key=api_key ,stream=True)
+        self.ai_interpreter_session.load_another_system_prompt(["注意，卦象的解释尽可能的详细，长一些的文字都好，并且要确保正确，还有不能输出特殊字符，不要重复"])
 
     def get_div_type(self) -> DivType:
         return self._type
