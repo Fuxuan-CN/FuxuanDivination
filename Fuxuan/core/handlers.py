@@ -100,10 +100,7 @@ class LuckHandler(InterpretHandler):
         获取卦象的类型
         """
         try:
-            _upper = hexagram[:3]
-            _lower = hexagram[3:]
-            _hexagram = (_upper, _lower)
-            return HEXAGRAMS_64_TO_NAME[_hexagram]
+            return {HEXAGRAMS_64_TO_NAME[original]}
         except KeyError:
             return "卦象还未被收录"
         
@@ -180,7 +177,7 @@ class ItemFoundHandler(InterpretHandler):
         # 寻物占卜
         hexagram_info = f"""
         太卜大人，帮我解一下卦象并推测物品在哪，谢谢，占算的问题是 "{question}"，结果如下：
-卦象: {HEXAGRAMS_64_TO_NAME[original[:3], original[3:]]},
+卦象: {HEXAGRAMS_64_TO_NAME[original]},
 先天方位: \n
 个人: {self_location_first}, 地理: {geo_location_first}
 后天方位: \n
