@@ -12,5 +12,5 @@ if __name__ == '__main__':
     question = input("请输入问题：")
     result , hexagram_string = divinator.run(question=question)
     print(hexagram_string)
-    resp = ittr.interpret(div_result=result,div_type=DivType.LUCK,question=question)
+    resp = ittr.interpret(div_result=result,div_type=DivType.LUCK, question=question, output_to_file=True)
     print(resp)

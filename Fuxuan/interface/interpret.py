@@ -9,6 +9,11 @@ class InterpretHandler(ABC):
     """
 
     @abstractmethod
+    def set_api_key(self, api_key: str) -> None:
+        """设置API密钥"""
+        pass
+
+    @abstractmethod
     def get_div_type(self) -> DivType:
         """获取占卜类型"""
         pass

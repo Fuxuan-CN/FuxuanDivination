@@ -4,14 +4,32 @@ from ..model import hexagramsType, hexagramType, DivType , DivinationResult , Di
 from ..interface.interpret import InterpretHandler
 from .ai import Session
 from typing import Union , Optional
+from functools import wraps
 
+HANDLER_DICT: dict[DivType, type[InterpretHandler]] = {}
+"""
+解释器字典，用于存储不同类型的解释器
+"""
+# 实现一个装饰器，用于注册解释器
+def Handler(div_type: DivType):
+    @wraps(Handler)
+    def wrapper(cls):
+        HANDLER_DICT[div_type] = cls # 不实例化，直接存储类
+        return cls
+    return wrapper
+
+@Handler(DivType.LUCK)
 class LuckHandler(InterpretHandler):
     """吉凶处理器"""
 
-    def __init__(self, api_key: str = "your_api_key") -> None:
+    def __init__(self, api_key: str = "") -> None:
+        self.api_key = api_key
         self._type = DivType.LUCK # 占卜类型
-        self.ai_interpreter_session = Session("glm-4-plus", api_key=api_key,stream=True)
-        self.ai_interpreter_session.load_another_system_prompt(["注意，卦象的解释尽可能的详细，长一些的文字都好，并且要确保正确，还有不能输出特殊字符，不要重复"])
+        self.ai_interpreter_session = Session("glm-4-plus", api_key=self.api_key,stream=True)
+        self.ai_interpreter_session.load_another_system_prompt(["注意，卦象的解释尽可能的详细，长一些的文字都好，并且要确保正确，还有不能输出特殊字符，卦象表示不要用特殊字符，而是用名字，不要重复"])
+
+    def set_api_key(self, api_key: str) -> None:
+        self.api_key = api_key
 
     def get_div_type(self) -> DivType:
         return self._type
@@ -138,15 +156,20 @@ class LuckHandler(InterpretHandler):
         )
         return result
     
+@Handler(DivType.ITEM)
 class ItemFoundHandler(InterpretHandler):
     """ 寻物占卜处理器 """
-    def __init__(self, api_key: str = "your_api_key") -> None:
+    def __init__(self, api_key: str = "") -> None:
+        self.api_key = api_key
         self._type = DivType.ITEM # 占卜类型
-        self.ai_interpreter_session = Session("glm-4-plus", api_key=api_key ,stream=True)
-        self.ai_interpreter_session.load_another_system_prompt(["注意，卦象的解释尽可能的详细，长一些的文字都好，并且要确保正确，还有不能输出特殊字符，不要重复"])
+        self.ai_interpreter_session = Session("glm-4-plus", api_key=self.api_key ,stream=True)
+        self.ai_interpreter_session.load_another_system_prompt(["注意，卦象的解释尽可能的详细，长一些的文字都好，并且要确保正确，还有不能输出特殊字符，卦象表示不要用特殊字符，而是用名字，不要重复"])
 
     def get_div_type(self) -> DivType:
         return self._type
+    
+    def set_api_key(self, api_key: str) -> None:
+        self.api_key = api_key
     
     def get_location_of_hexagram(self, hexagram: hexagramsType) -> tuple[tuple[str, str], tuple[str, str]]:
         upper = hexagram[:3]
