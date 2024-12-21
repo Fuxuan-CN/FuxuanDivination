@@ -177,7 +177,7 @@ class ItemFoundHandler(InterpretHandler):
         # 寻物占卜
         hexagram_info = f"""
         太卜大人，帮我解一下卦象并推测物品在哪，谢谢，占算的问题是 "{question}"，结果如下：
-卦象: {HEXAGRAMS_64_TO_NAME[original]},
+卦象: 上{HEXAGRAM_TO_STR[original[:3]]}|下{HEXAGRAM_TO_STR[original[3:]]},
 先天方位: \n
 个人: {self_location_first}, 地理: {geo_location_first}
 后天方位: \n
