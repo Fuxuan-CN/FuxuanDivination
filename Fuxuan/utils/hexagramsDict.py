@@ -76,4 +76,4 @@ NAME_TO_HEXAGRAMS_64 = {
     "火水未济": (_离, _坎)
 }
 
-HEXAGRAMS_64_TO_NAME = {tuple(hexagrams): name for name, hexagrams in NAME_TO_HEXAGRAMS_64.items()}
+HEXAGRAMS_64_TO_NAME = {hexagrams[0] + hexagrams[1]: name for name, hexagrams in NAME_TO_HEXAGRAMS_64.items()}
