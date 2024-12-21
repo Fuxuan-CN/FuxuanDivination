@@ -1,14 +1,16 @@
 
 from Fuxuan import TimeDivination
-from Fuxuan import Interpretation
+from Fuxuan import Interpretation , DivType
 
 # build exe file command:
-# pyinstaller -F --version-file resources/version.txt FuxuanDivination.py -i resources/icon.ico
+# pyinstaller -F --onefile --version=resource/version.txt --icon=resource/icon.ico FuxuanDivination.py
 
 if __name__ == '__main__':
     # 时间占卜
     divinator = TimeDivination()
-    ittr = Interpretation()
+    ittr = Interpretation(api_key="your_api_key") # 为了使用ZhipuAI的SDK，需要先申请API Key
     question = input("请输入问题：")
-    result , div_result_string = divinator.run(question=question)
-    ittr.interpret(div_result=result, output_to_console=True)
+    result , hexagram_string = divinator.run(question=question)
+    print(hexagram_string)
+    resp = ittr.interpret(div_result=result,div_type=DivType.LUCK,question=question)
+    print(resp)

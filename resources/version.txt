@@ -19,11 +19,11 @@ VSVersionInfo(
         StringTable(
           u'040904B0',  # 语言和代码页设置为中文简体
           [
-            StringStruct(u'CompanyName', u'符玄(KOKOMI12345)'),
+            StringStruct(u'CompanyName', u'符玄(Fuxuan-CN)'),
             StringStruct(u'FileDescription', u'一个基于《易经》的卦象占卜程序'),
             StringStruct(u'FileVersion', u'2.0.0.0'),
             StringStruct(u'InternalName', u'占卜程序'),
-            StringStruct(u'LegalCopyright', u'Copyright (c) 2024 符玄(KOKOMI12345)'),
+            StringStruct(u'LegalCopyright', u'Copyright (c) 2024 符玄(Fuxuan-CN)'),
             StringStruct(u'OriginalFilename', u'占卜.exe'),
             StringStruct(u'ProductName', u'梅花易数'),
             StringStruct(u'ProductVersion', u'2.0-beta')
