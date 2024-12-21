@@ -27,10 +27,10 @@ class Interpretation(InterpretAble):
         """
         if div_type == DivType.ITEM:
             # 匹配寻物相关的各种表达方式
-            return bool(re.search(r"寻物|物品|物体|寻找|找", question, re.IGNORECASE))
+            return bool(re.search(r"寻物|物品|物体|寻找|找|东西", question, re.IGNORECASE))
         elif div_type == DivType.LUCK:
             # 匹配运势相关的各种表达方式
-            return bool(re.search(r"运势|命运|运气|吉凶|运", question, re.IGNORECASE))
+            return bool(re.search(r"运势|命运|运气|吉凶|运|好运", question, re.IGNORECASE))
         return False
 
     def interpret(self, 
