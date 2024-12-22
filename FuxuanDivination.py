@@ -1,5 +1,5 @@
 
-from Fuxuan import Num, Divinator
+from Fuxuan import Num, Divinator, DivinationQuestion
 from Fuxuan import Interpretation, DivinationType , IttrType
 import os
 
@@ -9,7 +9,9 @@ import os
 if __name__ == '__main__':
     # 时间占卜
     divinator = Divinator()
-    question = input("请输入问题：").strip()
+    avaliable_div_methods = list(DivinationType.__members__.keys())
+    avaliable_question_types = list(IttrType.__members__.keys())
+    question = content=input("请输入占卜问题：").strip()
     if not os.path.exists("api_key.key"):
        api_key = input("请输入API Key：").strip()
        with open("api_key.key", "w") as key_file:
@@ -17,23 +19,18 @@ if __name__ == '__main__':
     else:
        with open("api_key.key") as key_file:
            api_key = key_file.read().strip()
-    div_t = input("请输入占卜类型(luck/item)：").strip()
-    div_method = input("请输入占卜方法(time/num)：").strip()
+    div_t = input(f"请输入占卜类型({'/'.join(avaliable_question_types)})：").strip()
+    div_method = input(f"请输入占卜方法({'/'.join(avaliable_div_methods)})：").strip()
     ittr = Interpretation(api_key)
-    if div_method not in ['time', 'num']:
-        print("占卜方法错误，请重新输入！")
-        exit(1)
-    if div_t not in ['luck', 'item']:
-        print("占卜类型错误，请重新输入！")
-        exit(1)
-    IttrType.LUCK if div_t == 'luck' else IttrType.ITEM
-    
+    _question = DivinationQuestion(question, div_method) # type: ignore
+
     if div_method == "num":
         number1 = int(input("请输入第一个数字：").strip())
         number2 = int(input("请输入第二个数字：").strip())
         number3 = int(input("请输入第三个数字：").strip())
         num = Num(number1, number2, number3)
-        result, hexagram_readable = divinator.run(question, DivinationType.NUMBER, num)
-    elif div_method == "time":
-        result, hexagram_readable = divinator.run(question, DivinationType.TIME)
-    ittr.interpret(result, div_t, question, output_to_file=True) #type: ignore
+        result, hexagram_readable = divinator.run(_question, DivinationType.NUMBER, num)
+    else:
+        result, hexagram_readable = divinator.run(_question, div_method) # type: ignore
+    print(hexagram_readable)
+    ittr.interpret(result, div_t, _question, auto_match_type=True, output_to_file=True) #type: ignore
