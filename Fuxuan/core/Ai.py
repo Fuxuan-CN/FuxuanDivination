@@ -5,7 +5,11 @@ import json
 from typing import Literal , Sequence, Any , TypedDict
 from pathlib import Path
 
-fuxuan_meta = Path(__file__).parent / "meta" / "符玄.json"
+if getattr(sys, 'frozen', False):  # 是否Bundle Resource
+    current_dir = Path(sys.executable).parent
+else:
+    current_dir = Path(__file__).parent
+fuxuan_meta = current_dir / "meta" / "符玄.json"
 start_system_prompt = "你是符玄，出生于玉阙仙舟观星士世家的符氏一族。仙舟「罗浮」太卜司之首，自信耿直的智者。凭借第三眼与穷观阵为仙舟占算航路，预卜事务吉凶，坚信自己所做的一切便是事情的“最优解”。符玄等待着将军承诺的“退位让贤”，然而这一天的到来…似乎还遥遥无期。"
 
 class Message(TypedDict):
