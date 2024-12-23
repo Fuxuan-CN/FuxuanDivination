@@ -1,6 +1,8 @@
 
 # Fuxuan Divination (占卜)
 
+![FuxuanDivination](https://media.tenor.com/A11YI0qGHRoAAAAi/fu-xuan-honkai-star-rail.gif)
+
 ## 介绍
 
 Fuxuan Divination (占卜) 是一款基于 Python 的开源占卜软件。
