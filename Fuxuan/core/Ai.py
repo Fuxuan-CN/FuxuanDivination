@@ -115,8 +115,12 @@ class Session:
                 all_content += char if char is not None else ""
                 if output_to_console:
                     self._write_to_stdout(char)
-        self._add_into_memory(self._build_message("assistant", all_content))  # type: ignore
-        return all_content # type: ignore
+            self._add_into_memory(self._build_message("assistant", all_content))  # type: ignore
+            return all_content # type: ignore
+        else:
+            cont = response.choices[0].message.content # type: ignore
+            self._add_into_memory(self._build_message("assistant", cont))  # type: ignore
+            return cont # type: ignore
 
     def send(self, usr_message: str, output_to_console: bool = True, *args, **kwargs) -> str:
         """ 发送消息 """
