@@ -1,6 +1,8 @@
 
 # 更新日志(Change Log)
 
+![FuxuanDivination](https://media.tenor.com/-VFGl8GUQRQAAAAi/fu-xuan-honkai-star-rail.gif)
+
 ## 2024-12-23 23:00
 
 - 给SRA写了一个新的扩展，同时修复了老旧的bug
