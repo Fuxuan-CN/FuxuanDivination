@@ -14,6 +14,14 @@ class SRADivinationPlugin:
         self.iterper = Interpretation(api_key=api_key)
         self.asked_cache: tuple[DivinationResult, str, DivinationQuestion] = None # type: ignore
 
+    def get_divination_methods(self) -> list[str]:
+        """获取可用的占卜方法"""
+        return list(DivinationType.__members__.keys())
+    
+    def get_interpreter_methods(self) -> list[str]:
+        """获取可用的解卦方法"""
+        return list(IttrType.__members__.keys())
+
     def ask(self, question: str, question_type: IttrType, divination_method: DivinationType, *args, **kwargs) -> None:
         """占算中的提问，然后生成卦象
         - question: 问题
