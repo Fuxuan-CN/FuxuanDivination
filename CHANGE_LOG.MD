@@ -3,6 +3,10 @@
 
 ![FuxuanDivination](https://media.tenor.com/-VFGl8GUQRQAAAAi/fu-xuan-honkai-star-rail.gif)
 
+## 2025-1-10 112:03
+
+- 优化代码结构，添加注释，完善文档，修复了一些bug
+
 ## 2025-1-4 17:31
 
 - 更加结构化项目，修复了py版本的不兼容问题，比如override装饰器在3.11或以下不可用的情况，修复requirements.txt中的依赖缺少的情况，优化了代码结构，提升了代码的可读性和可维护性。
